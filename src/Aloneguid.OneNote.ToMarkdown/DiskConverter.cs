@@ -68,32 +68,72 @@ namespace Aloneguid.OneNote.ToMarkdown
 
       private async Task ConvertImages()
       {
-         bool hasTitle = false;
+         bool isTitle = true;
          foreach (KeyValuePair<string, string> resPair in _resourceLocalToRemoteId)
          {
-            Log.Debug("downloading {name}...", resPair.Value);
-            using (Stream source = await _client.DownloadResource(resPair.Value))
+            string remoteId = resPair.Value;
+            string localName = resPair.Key;
+            Log.Debug("downloading {name}...", remoteId);
+            using (Stream source = await _client.DownloadResource(remoteId))
             {
-               using (Stream dest = File.Create(Path.Combine(_baseDir, resPair.Key)))
-               {
-                  Log.Debug("saving to {name}...", resPair.Key);
-                  source.CopyTo(dest);
+               SaveImage(source, localName, isTitle);
+               isTitle = false;
+            }
+         }
+      }
 
+      private void SaveImage(Stream source, string localName, bool isTitle)
+      {
+         Log.Debug("saving {name}", localName);
+
+         //save the original
+         string destName = Path.Combine(_baseDir, localName);
+         using (Stream dest = File.Create(destName))
+         {
+            source.CopyTo(dest);
+         }
+
+         //re-compress optimal version
+         string viewName = Path.ChangeExtension(destName, "view.jpg");
+         Log.Debug("compressing to {name}", viewName);
+         Recompress(localName, viewName, _settings.ImageWidth, _settings.ImageHeight, _settings.ImageQuality);
+
+         if(isTitle)
+         {
+            Log.Debug("saving as title");
+            Recompress(localName, "title.jpg", _settings.TitleWidth, _settings.TitleHeight, _settings.TitleQuality);
+         }
+
+         File.Move(destName, Path.ChangeExtension(destName, ".o.jpg"));
+         File.Move(viewName, destName);
+
+      }
+
+      private void Recompress(string sourceName, string destName, int width, int height, int quality)
+      {
+         ISupportedImageFormat format = new JpegFormat { Quality = quality };
+         var size = new Size(width, height);
+         var rl = new ResizeLayer(size, ResizeMode.Crop);
+
+         using (FileStream src = File.OpenRead(Path.Combine(_baseDir, sourceName)))
+         {
+            using (FileStream dest = File.Create(Path.Combine(_baseDir, destName)))
+            {
+               using (var factory = new ImageFactory())
+               {
+                  factory
+                      .Load(src)
+                      .Resize(rl)
+                      .Format(format)
+                      .Save(dest);
                }
             }
-
-            if (!hasTitle)
-            {
-               SaveTitle(resPair.Key);
-               hasTitle = true;
-            }
-
          }
       }
 
       private void SaveTitle(string name)
       {
-         ISupportedImageFormat format = new JpegFormat { Quality = 70 };
+         ISupportedImageFormat format = new JpegFormat { Quality = _settings.TitleQuality };
          var size = new Size(_settings.TitleWidth, _settings.TitleHeight);
          var rl = new ResizeLayer(size, ResizeMode.Crop);
 
