@@ -5,6 +5,7 @@ using Config.Net;
 using System.Threading.Tasks;
 using Aloneguid.OneNote.Sdk;
 using Serilog;
+using System.Diagnostics;
 
 namespace Aloneguid.OneNote.ToMarkdown
 {
@@ -35,6 +36,10 @@ namespace Aloneguid.OneNote.ToMarkdown
          var selector = new PageSelector(_client, _settings);
          Page page = await selector.SelectPageAsync();
 
+         var converter = new DiskConverter(_client, page, _settings);
+         string dir = await converter.ConvertAsync();
+
+         Process.Start("code", dir);
       }
 
       private static async Task<string> GetToken()
