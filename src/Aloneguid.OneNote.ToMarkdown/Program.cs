@@ -32,12 +32,9 @@ namespace Aloneguid.OneNote.ToMarkdown
             .MinimumLevel.Debug()
             .CreateLogger();
 
-         Log.Debug("fetching notebooks...");
-         NotebooksResponse notebooks = await _client.GetNotebooksAsync();
-         foreach(Notebook notebook in notebooks.Notebooks)
-         {
-            Log.Debug("n: {name}", notebook.Name);
-         }
+         var selector = new PageSelector(_client, _settings);
+         Page page = await selector.SelectPageAsync();
+
       }
 
       private static async Task<string> GetToken()
