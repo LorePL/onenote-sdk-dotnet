@@ -1,5 +1,6 @@
 ﻿using Refit;
 using System;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Aloneguid.OneNote.Sdk
@@ -19,7 +20,11 @@ namespace Aloneguid.OneNote.Sdk
       [Get("/v1.0/me/notes/pages/{pageId}/content")]
       Task<string> GetPageHtmlContent(string pageId);
 
-      [Get("/api/v1.0/me/notes/pages/{pageId}/preview")]
+      [Get("/v1.0/me/notes/pages/{pageId}/preview")]
       Task<PagePreviewResponse> GetPagePreview(string pageId);
+
+      //https://www.onenote.com/api/v1.0/me/notes/resources/1-9f2f281b6f3143339e2407cd68b3e41f!1-a3887b9d-f776-406c-84d8-09917f1b7dca/$value
+      [Get("/v1.0/me/notes/resources/{id}/$value")]
+      Task<Stream> DownloadResource(string id);
    }
 }
