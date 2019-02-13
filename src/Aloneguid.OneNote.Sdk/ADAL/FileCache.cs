@@ -6,7 +6,7 @@ namespace Aloneguid.OneNote.Sdk.ADAL
 
    // This is a simple persistent cache implementation for a desktop application.
    // It uses DPAPI for storing tokens in a local file.
-   class FileCache : TokenCache
+   public class FileCache : TokenCache
    {
       public string CacheFilePath;
       private static readonly object FileLock = new object();
