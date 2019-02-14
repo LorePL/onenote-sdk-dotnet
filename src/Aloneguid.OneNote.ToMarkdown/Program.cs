@@ -39,7 +39,7 @@ namespace Aloneguid.OneNote.ToMarkdown
          var converter = new DiskConverter(_client, page, _settings);
          string dir = await converter.ConvertAsync();
 
-         Process.Start("code", dir);
+         Process.Start("code", "\"" + dir + "\"");
       }
 
       private static async Task<string> GetToken()

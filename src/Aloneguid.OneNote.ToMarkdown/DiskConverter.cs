@@ -27,7 +27,8 @@ namespace Aloneguid.OneNote.ToMarkdown
          _client = client;
          _page = page;
          _settings = settings;
-         _baseDir = Path.Combine(settings.RootDir, Guid.NewGuid().ToString());
+         DateTime date = DateTime.UtcNow;
+         _baseDir = Path.Combine(settings.RootDir, date.Year.ToString(), $"{date.Month,2:D2}", $"{date.Day,2:D2}");
          if (!Directory.Exists(_baseDir)) Directory.CreateDirectory(_baseDir);
       }
 
@@ -61,8 +62,14 @@ namespace Aloneguid.OneNote.ToMarkdown
             string localName = $"{resourceIndex++.ToString().PadLeft(3, '0')}.png";
             _resourceLocalToRemoteId[localName] = rid;
 
+            Log.Debug("{rid} => {local}", rid, localName);
+
             markdown = markdown.Replace(Page.MakeFullResourceId(rid), localName);
          }
+         markdown = markdown.RemoveLinesContaining("000.png", StringComparison.OrdinalIgnoreCase);
+
+         Log.Debug("resources fixed in markdown");
+
          File.WriteAllText(Path.Combine(_baseDir, "post.md"), markdown);
       }
 
@@ -93,20 +100,24 @@ namespace Aloneguid.OneNote.ToMarkdown
             source.CopyTo(dest);
          }
 
-         //re-compress optimal version
-         string viewName = Path.ChangeExtension(destName, "view.jpg");
-         Log.Debug("compressing to {name}", viewName);
-         Recompress(localName, viewName, _settings.ImageWidth, _settings.ImageHeight, _settings.ImageQuality);
 
          if(isTitle)
          {
             Log.Debug("saving as title");
             Recompress(localName, "title.jpg", _settings.TitleWidth, _settings.TitleHeight, _settings.TitleQuality);
+            File.Delete(Path.Combine(_baseDir, localName));
          }
+         else
+         {
+            //re-compress optimal version
+            string viewName = Path.ChangeExtension(destName, "view.jpg");
+            Log.Debug("compressing to {name}", viewName);
+            Recompress(localName, viewName, _settings.ImageWidth, _settings.ImageHeight, _settings.ImageQuality);
 
-         File.Move(destName, Path.ChangeExtension(destName, ".o.jpg"));
-         File.Move(viewName, destName);
+            File.Move(destName, Path.ChangeExtension(destName, ".o.jpg"));
+            File.Move(viewName, destName);
 
+         }
       }
 
       private void Recompress(string sourceName, string destName, int width, int height, int quality)
@@ -117,7 +128,9 @@ namespace Aloneguid.OneNote.ToMarkdown
 
          using (FileStream src = File.OpenRead(Path.Combine(_baseDir, sourceName)))
          {
-            using (FileStream dest = File.Create(Path.Combine(_baseDir, destName)))
+            string destPath = Path.Combine(_baseDir, destName);
+            if (File.Exists(destPath)) File.Delete(destPath);
+            using (FileStream dest = File.Create(destPath))
             {
                using (var factory = new ImageFactory())
                {
