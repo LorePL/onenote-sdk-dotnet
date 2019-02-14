@@ -110,12 +110,15 @@ namespace Aloneguid.OneNote.ToMarkdown
          else
          {
             //re-compress optimal version
-            string viewName = Path.ChangeExtension(destName, "view.jpg");
+
+            //leave originals for now
+
+            /*string viewName = Path.ChangeExtension(destName, "view.jpg");
             Log.Debug("compressing to {name}", viewName);
             Recompress(localName, viewName, _settings.ImageWidth, _settings.ImageHeight, _settings.ImageQuality);
 
             File.Move(destName, Path.ChangeExtension(destName, ".o.jpg"));
-            File.Move(viewName, destName);
+            File.Move(viewName, destName);*/
 
          }
       }

@@ -27,7 +27,7 @@ namespace Aloneguid.OneNote.ToMarkdown
       [Option(DefaultValue = 0)]
       int ImageHeight { get; }
 
-      [Option(DefaultValue = 85)]
+      [Option(DefaultValue = 95)]
       int ImageQuality { get; }
    }
 }
