@@ -22,12 +22,11 @@ namespace Aloneguid.OneNote.ToMarkdown
       private readonly Dictionary<string, string> _resourceLocalToRemoteId = new Dictionary<string, string>();
       private readonly string _baseDir;
 
-      public DiskConverter(IOneNoteClient client, Page page, ISettings settings)
+      public DiskConverter(IOneNoteClient client, Page page, ISettings settings, DateTime date)
       {
          _client = client;
          _page = page;
          _settings = settings;
-         DateTime date = DateTime.UtcNow;
          _baseDir = Path.Combine(settings.RootDir, date.Year.ToString(), $"{date.Month,2:D2}", $"{date.Day,2:D2}");
          if (!Directory.Exists(_baseDir)) Directory.CreateDirectory(_baseDir);
       }

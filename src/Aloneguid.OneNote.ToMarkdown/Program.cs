@@ -36,7 +36,21 @@ namespace Aloneguid.OneNote.ToMarkdown
          var selector = new PageSelector(_client, _settings);
          Page page = await selector.SelectPageAsync();
 
-         var converter = new DiskConverter(_client, page, _settings);
+         Log.Information("type publishing date as yyyy/mm/dd or press enter to use current date");
+         string dateInput = Console.ReadLine();
+         DateTime date;
+         if(string.IsNullOrEmpty(dateInput))
+         {
+            date = DateTime.UtcNow;
+         }
+         else
+         {
+            string[] parts = dateInput.Split('/');
+            date = new DateTime(int.Parse(parts[0]), int.Parse(parts[1]), int.Parse(parts[2]), 0, 0, 0, DateTimeKind.Utc);
+         }
+         Log.Information("using {year}/{month}/{day}", date.Year, date.Month, date.Day);
+
+         var converter = new DiskConverter(_client, page, _settings, date);
          string dir = await converter.ConvertAsync();
 
          Process.Start("code", "\"" + dir + "\"");
