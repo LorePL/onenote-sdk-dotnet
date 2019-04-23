@@ -24,3 +24,24 @@ steps:
   displayName: GitVersion
   inputs:
     preferBundledVersion: false
+
+- task: DotNetCoreCLI@2
+  displayName: 'build all'
+  inputs:
+    projects: src/onenote.sln
+    arguments: '-c release'
+
+- task: CopyFiles@2
+  displayName: 'copy generated nugets'
+  inputs:
+    SourceFolder: src
+    Contents: '**/*.nupkg'
+    TargetFolder: ' $(build.artifactstagingdirectory)'
+    CleanTargetFolder: true
+    OverWrite: true
+    flattenFolders: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'publish nugets'
+  inputs:
+    ArtifactName: nuget
