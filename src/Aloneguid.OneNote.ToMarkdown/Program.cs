@@ -20,6 +20,7 @@ namespace Aloneguid.OneNote.ToMarkdown
       static async Task Main(string[] args)
       {
          _settings = new ConfigurationBuilder<ISettings>()
+            .UseEnvironmentVariables()
             .UseIniFile(@"c:\tmp\onenote.ini")
             .Build();
 
