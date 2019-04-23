@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using System.IO;
 
-namespace Aloneguid.OneNote.Sdk.ADAL
+namespace OneNote.Net.ADAL
 {
 
    // This is a simple persistent cache implementation for a desktop application.

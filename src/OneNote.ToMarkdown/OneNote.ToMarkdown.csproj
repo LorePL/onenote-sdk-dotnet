@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Aloneguid.OneNote.Sdk\Aloneguid.OneNote.Sdk.csproj" />
+    <ProjectReference Include="..\OneNote.Sdk\OneNote.Net.csproj" />
   </ItemGroup>
 
 </Project>

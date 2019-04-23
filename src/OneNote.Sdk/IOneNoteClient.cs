@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Aloneguid.OneNote.Sdk
+namespace OneNote.Net
 {
    [Headers("Authorization: Bearer")]
    public interface IOneNoteClient

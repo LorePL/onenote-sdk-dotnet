@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Aloneguid.OneNote.Sdk
+namespace OneNote.Net
 {
    public class PagesResponse
    {

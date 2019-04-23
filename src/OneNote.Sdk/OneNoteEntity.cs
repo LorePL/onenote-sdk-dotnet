@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Aloneguid.OneNote.Sdk
+namespace OneNote.Net
 {
    public abstract class OneNoteEntity
    {

@@ -1,4 +1,4 @@
-﻿using Aloneguid.OneNote.Sdk.ADAL;
+﻿using OneNote.Net.ADAL;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Refit;
 using System;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Aloneguid.OneNote.Sdk
+namespace OneNote.Net
 {
    public static class ClientFactory
    {

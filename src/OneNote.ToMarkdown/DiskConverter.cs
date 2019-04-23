@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Aloneguid.OneNote.Sdk;
+using OneNote.Net;
 using Html2Markdown;
 using ImageProcessor;
 using ImageProcessor.Imaging;

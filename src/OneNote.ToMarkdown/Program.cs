@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
-using Aloneguid.OneNote.Sdk.ADAL;
+using OneNote.Net.ADAL;
 using Config.Net;
 using System.Threading.Tasks;
-using Aloneguid.OneNote.Sdk;
+using OneNote.Net;
 using Serilog;
 using System.Diagnostics;
 

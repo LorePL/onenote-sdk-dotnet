@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Aloneguid.OneNote.Sdk;
+using OneNote.Net;
 using Serilog;
 
 namespace Aloneguid.OneNote.ToMarkdown

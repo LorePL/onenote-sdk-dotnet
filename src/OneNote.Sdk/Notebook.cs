@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace Aloneguid.OneNote.Sdk
+namespace OneNote.Net
 {
    public class NotebooksResponse
    {

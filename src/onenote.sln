@@ -3,14 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aloneguid.OneNote.Sdk", "Aloneguid.OneNote.Sdk\Aloneguid.OneNote.Sdk.csproj", "{6DE3E54C-DC35-4053-B27A-54ADD58BF5CD}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aloneguid.OneNote.ToMarkdown", "Aloneguid.OneNote.ToMarkdown\Aloneguid.OneNote.ToMarkdown.csproj", "{7C4BF810-AE9E-4491-A743-C7CEDCC48637}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{497EDE38-EBAD-4E28-9287-98494C9704EE}"
 	ProjectSection(SolutionItems) = preProject
 		..\azure-pipelines.yml = ..\azure-pipelines.yml
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneNote.Net", "OneNote.Sdk\OneNote.Net.csproj", "{E34A5276-2194-4241-A3C1-BBFF41084B9C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneNote.ToMarkdown", "OneNote.ToMarkdown\OneNote.ToMarkdown.csproj", "{AD1C73DF-921B-4405-AEC4-20A76FD5BD77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,14 +18,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6DE3E54C-DC35-4053-B27A-54ADD58BF5CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6DE3E54C-DC35-4053-B27A-54ADD58BF5CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6DE3E54C-DC35-4053-B27A-54ADD58BF5CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6DE3E54C-DC35-4053-B27A-54ADD58BF5CD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7C4BF810-AE9E-4491-A743-C7CEDCC48637}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C4BF810-AE9E-4491-A743-C7CEDCC48637}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C4BF810-AE9E-4491-A743-C7CEDCC48637}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C4BF810-AE9E-4491-A743-C7CEDCC48637}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E34A5276-2194-4241-A3C1-BBFF41084B9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E34A5276-2194-4241-A3C1-BBFF41084B9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E34A5276-2194-4241-A3C1-BBFF41084B9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E34A5276-2194-4241-A3C1-BBFF41084B9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD1C73DF-921B-4405-AEC4-20A76FD5BD77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD1C73DF-921B-4405-AEC4-20A76FD5BD77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD1C73DF-921B-4405-AEC4-20A76FD5BD77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD1C73DF-921B-4405-AEC4-20A76FD5BD77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
