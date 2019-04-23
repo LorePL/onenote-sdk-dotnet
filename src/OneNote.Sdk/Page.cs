@@ -25,6 +25,9 @@ namespace OneNote.Net
       [JsonProperty("createdTime")]
       public DateTime CreatedTime { get; set; }
 
+      [JsonProperty("lastModifiedTime")]
+      public DateTime LastModifiedTime { get; set; }
+
       [JsonProperty("title")]
       public string Title { get; set; }
 

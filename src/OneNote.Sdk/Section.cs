@@ -16,5 +16,7 @@ namespace OneNote.Net
 
    public class Section : OneNoteEntity
    {
+      [JsonProperty("createdTime")]
+      public DateTime CreatedTime { get; set; }
    }
 }
