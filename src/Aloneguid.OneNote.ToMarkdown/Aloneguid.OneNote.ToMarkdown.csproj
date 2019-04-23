@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Config.Net" Version="4.13.2" />
+    <PackageReference Include="Config.Net" Version="4.13.7" />
     <PackageReference Include="Html2Markdown" Version="3.2.1.341" />
     <PackageReference Include="ImageProcessor" Version="2.7.0.100" />
     <PackageReference Include="Serilog" Version="2.8.0" />
