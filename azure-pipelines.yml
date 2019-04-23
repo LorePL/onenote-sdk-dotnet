@@ -16,11 +16,11 @@ pr:
       - README.md
 
 pool:
-  vmImage: 'Ubuntu-16.04'
+  vmImage: 'windows-2019'
 
 steps:
 
-- task: gittools.gitversion-task.GitVersion@4
-  displayName: gitversion
+- task: gittools.gitversion.gitversion-task.GitVersion@4
+  displayName: GitVersion
   inputs:
     preferBundledVersion: false
