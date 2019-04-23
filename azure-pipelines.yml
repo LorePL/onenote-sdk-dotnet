@@ -1,0 +1,26 @@
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+  paths:
+    exclude:
+      - README.md
+
+pr:
+  branches:
+    include:
+      - master
+  paths:
+    exclude:
+      - README.md
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+steps:
+
+- task: gittools.gitversion-task.GitVersion@4
+  displayName: gitversion
+  inputs:
+    preferBundledVersion: false
