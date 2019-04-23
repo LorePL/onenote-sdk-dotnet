@@ -29,7 +29,7 @@ steps:
   displayName: 'build all'
   inputs:
     projects: src/onenote.sln
-    arguments: '-c release'
+    arguments: '-c release /p:Version=$(GitVersion.SemVer)'
 
 - task: CopyFiles@2
   displayName: 'copy generated nugets'
