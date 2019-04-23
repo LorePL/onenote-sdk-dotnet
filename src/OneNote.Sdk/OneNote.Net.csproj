@@ -10,6 +10,7 @@
       <RepositoryType>GitHub</RepositoryType>
       <PackageTags>OneNote</PackageTags>
       <PackageIconUrl>http://i.isolineltd.com/nuget/onenote.png</PackageIconUrl>
+      <Description>.NET client for Microsoft OneNote</Description>
    </PropertyGroup>
 
    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
